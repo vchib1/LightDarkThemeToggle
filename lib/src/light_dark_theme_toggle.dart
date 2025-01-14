@@ -64,9 +64,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
       },
       icon: CustomPaint(
         size: Size.square(100),
-        painter: EclipsePainter(
-          animation: _animation,
-        ),
+        painter: SimplePainter(animation: _animation),
       ),
     );
   }
