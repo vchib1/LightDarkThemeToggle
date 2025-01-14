@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 import '../utils/get_radian.dart';
 
 class InnerMoonPainter extends CustomPainter {
   final Animation<double> animation;
 
   const InnerMoonPainter({required this.animation}) : super(repaint: animation);
+
+  double get progress => animation.value;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -21,7 +22,7 @@ class InnerMoonPainter extends CustomPainter {
 
     canvas.translate(center.dx, center.dy);
 
-    canvas.rotate(animation.value * math.pi);
+    canvas.rotate(progress * getRadian(180));
 
     final clipCircle = Rect.fromCircle(
       center: Offset.zero,
@@ -55,7 +56,7 @@ class InnerMoonPainter extends CustomPainter {
 
     canvas.restore();
 
-    final translateX = size.width / 2 + (animation.value * size.width * .175);
+    final translateX = size.width / 2 + (progress * size.width * .175);
     final translateY = size.height / 2;
 
     canvas.drawCircle(Offset(translateX, translateY), width * .25, paint);

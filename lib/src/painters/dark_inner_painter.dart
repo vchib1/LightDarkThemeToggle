@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'model/animation_type.dart';
 import 'painters/painters.dart';
 
-const duration = Duration(milliseconds: 300);
-const reverseDuration = Duration(milliseconds: 300);
-const curve = Curves.easeInOut;
-const reverseCurve = Curves.ease;
+const duration = Duration(milliseconds: 500);
+const reverseDuration = Duration(milliseconds: 500);
+const curve = Curves.linear;
+const reverseCurve = Curves.linear;
 const size = 100.0;
 
 class LightDarkThemeToggle extends StatefulWidget {

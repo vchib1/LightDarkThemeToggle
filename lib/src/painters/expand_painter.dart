@@ -20,20 +20,22 @@ class ExpandPainter extends CustomPainter {
 
     final radius = size.width / 2;
 
-    final mainCircleRadius = lerpDouble(radius * .70, radius, progress)!;
+    final mainCircleRadius = lerpDouble(radius * .60, radius * .90, progress)!;
 
     const int count = 8;
     double angleStep = getRadian(360) / count;
-    if (animation.value < 1.0) {
+    if (progress < 1.0) {
       canvas.save();
       canvas.translate(center.dx, center.dy);
       canvas.scale(lerpDouble(1, 0, progress)!);
 
+      final circleRadius = radius * .90;
+
       for (int i = 0; i < count; i++) {
         final angle = angleStep * i;
-        final x = radius * math.cos(angle);
-        final y = radius * math.sin(angle);
-        canvas.drawCircle(Offset(x, y), radius * .15, paint);
+        final x = circleRadius * math.cos(angle);
+        final y = circleRadius * math.sin(angle);
+        canvas.drawCircle(Offset(x, y), circleRadius * .175, paint);
       }
       canvas.restore();
     }
@@ -47,8 +49,8 @@ class ExpandPainter extends CustomPainter {
     final eclipsePaint = Paint()..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
-    double translateX = size.width + (animation.value * -size.width * .75);
-    double translateY = size.height + (animation.value * -size.height * .75);
+    double translateX = size.width + (progress * -size.width * .75);
+    double translateY = size.height + (progress * -size.height * .75);
 
     // Apply translation to the canvas
     canvas.translate(translateX, -translateY);

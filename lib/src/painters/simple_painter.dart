@@ -5,6 +5,8 @@ class SimplePainter extends CustomPainter {
 
   const SimplePainter({required this.animation}) : super(repaint: animation);
 
+  double get progress => animation.value;
+
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
@@ -26,7 +28,7 @@ class SimplePainter extends CustomPainter {
     final eclipsePaint = Paint()..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
-    double translateX = size.width + (animation.value * -size.width * .70);
+    double translateX = size.width + (progress * -size.width * .70);
 
     // Apply translation to the canvas
     canvas.translate(translateX, -center.dy / 3);
@@ -40,6 +42,6 @@ class SimplePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant SimplePainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value;
+    return false;
   }
 }

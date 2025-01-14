@@ -17,10 +17,10 @@ class ClassicPainter extends CustomPainter {
     final radius = minDimension * 0.325;
 
     // Ray dimensions relative to size
-    final baseStrokeWidth = minDimension * 0.075;
+    final baseStrokeWidth = minDimension * 0.05;
     final rayGap = minDimension * 0.075;
-    final rayStartRadius = radius + rayGap;
-    final rayLength = minDimension * 0.10;
+    final rayStartRadius = (radius * .90) + rayGap;
+    final rayLength = minDimension * 0.15;
 
     final paint = Paint()
       ..color = Colors.blue
@@ -28,8 +28,7 @@ class ClassicPainter extends CustomPainter {
       ..isAntiAlias = true;
 
     final rayPaint = Paint()
-      ..color = Color.lerp(
-          Colors.blue, Colors.blue.withOpacity(0.1), animation.value)!
+      ..color = Colors.blue
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = baseStrokeWidth
@@ -38,18 +37,18 @@ class ClassicPainter extends CustomPainter {
     const int numRays = 8;
     double angleStep = getRadian(360) / numRays;
 
-    if (animation.value < 1.0) {
+    if (progress < 1.0) {
       canvas.save();
       canvas.translate(center.dx, center.dy);
 
-      final rotationAngle = math.pi * (1 + animation.value * 0.8);
+      final rotationAngle = math.pi * (1 + animation.value * 0.35);
       final scale = math.max(0.01, 1 - animation.value);
 
       canvas.rotate(rotationAngle);
       canvas.scale(scale);
 
-      final rayOpacity = (1 - animation.value).clamp(0.0, 1.0);
-      final rayColor = rayPaint.color.withOpacity(rayOpacity);
+      final rayOpacity = (1 - progress).clamp(0.0, 1.0);
+      final rayColor = rayPaint.color.withValues(alpha: rayOpacity);
 
       for (int i = 0; i < numRays; i++) {
         final angle = angleStep * i;

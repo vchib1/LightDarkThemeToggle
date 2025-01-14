@@ -35,11 +35,11 @@ class Example extends StatelessWidget {
       ),
       body: Center(
         child: Wrap(
+          spacing: 5,
+          runSpacing: 20,
           children: AnimationType.values.map(
             (e) {
-              return LightDarkThemeToggle(
-                animationType: e,
-              );
+              return LightDarkThemeToggle(animationType: e);
             },
           ).toList(),
         ),
