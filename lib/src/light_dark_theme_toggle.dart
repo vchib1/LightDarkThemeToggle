@@ -3,8 +3,8 @@ import 'painters/painters.dart';
 
 const duration = Duration(milliseconds: 300);
 const reverseDuration = Duration(milliseconds: 300);
-const curve = Curves.easeInOutBack;
-const reverseCurve = Curves.easeInOutBack;
+const curve = Curves.easeInOut;
+const reverseCurve = Curves.easeInOut;
 
 class LightDarkThemeToggle extends StatefulWidget {
   // TODO : Add Parameters to get customization
@@ -64,7 +64,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
       },
       icon: CustomPaint(
         size: Size.square(100),
-        painter: DarkSidePainter(
+        painter: EclipsePainter(
           animation: _animation,
         ),
       ),
