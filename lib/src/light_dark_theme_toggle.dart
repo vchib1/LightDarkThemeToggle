@@ -18,7 +18,7 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   const LightDarkThemeToggle({
     super.key,
-    this.animationType = AnimationType.halfSun,
+    this.animationType = AnimationType.innerMoon,
     //required this.duration,
     //required this.reverseDuration,
     //required this.curve,
@@ -75,9 +75,9 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
           AnimationType.eclipse => EclipsePainter(animation: _animation),
           AnimationType.halfSun => HalfSunPainter(animation: _animation),
           AnimationType.darkSide => DarkSidePainter(animation: _animation),
+          AnimationType.innerMoon => InnerMoonPainter(animation: _animation),
           // TODO: Handle this case.
           AnimationType.darkInner => throw UnimplementedError(),
-          AnimationType.innerMoon => throw UnimplementedError(),
         },
       ),
     );
