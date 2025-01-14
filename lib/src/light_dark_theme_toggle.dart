@@ -4,7 +4,7 @@ import 'painters/painters.dart';
 
 const duration = Duration(milliseconds: 500);
 const reverseDuration = Duration(milliseconds: 500);
-const curve = Curves.ease;
+const curve = Curves.easeInOut;
 const reverseCurve = Curves.ease;
 const size = 100.0;
 
@@ -18,7 +18,7 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   const LightDarkThemeToggle({
     super.key,
-    this.animationType = AnimationType.innerMoon,
+    this.animationType = AnimationType.halfSun,
     //required this.duration,
     //required this.reverseDuration,
     //required this.curve,
@@ -76,8 +76,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
           AnimationType.halfSun => HalfSunPainter(animation: _animation),
           AnimationType.darkSide => DarkSidePainter(animation: _animation),
           AnimationType.innerMoon => InnerMoonPainter(animation: _animation),
-          // TODO: Handle this case.
-          AnimationType.darkInner => throw UnimplementedError(),
+          AnimationType.expand => throw UnimplementedError(),
         },
       ),
     );

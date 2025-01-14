@@ -31,8 +31,8 @@ class HalfSunPainter extends CustomPainter {
 
     final arcRect = Rect.fromCenter(
       center: Offset.zero,
-      width: size.width * 0.60,
-      height: size.height * 0.60,
+      width: size.width * 0.65,
+      height: size.height * 0.65,
     );
 
     //rect 1

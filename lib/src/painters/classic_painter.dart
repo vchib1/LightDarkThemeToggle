@@ -6,18 +6,20 @@ class ClassicPainter extends CustomPainter {
 
   const ClassicPainter({required this.animation}) : super(repaint: animation);
 
+  double get progress => animation.value;
+
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
 
     final minDimension = math.min(size.width, size.height);
-    final radius = minDimension * 0.45; // Base circle radius
+    final radius = minDimension * 0.325;
 
     // Ray dimensions relative to size
-    final baseStrokeWidth = minDimension * 0.075; // Ray thickness
-    final rayGap = minDimension * 0.05; // Gap between circle and rays
-    final rayStartRadius = radius + rayGap; // Rays start after the gap
-    final rayLength = minDimension * 0.20;
+    final baseStrokeWidth = minDimension * 0.05;
+    final rayGap = minDimension * 0.05;
+    final rayStartRadius = radius + rayGap;
+    final rayLength = minDimension * 0.10;
 
     final paint = Paint()
       ..color = Colors.blue
@@ -26,7 +28,7 @@ class ClassicPainter extends CustomPainter {
 
     final rayPaint = Paint()
       ..color = Color.lerp(
-          Colors.blue, Colors.blue.withOpacity(0.8), animation.value)!
+          Colors.blue, Colors.blue.withOpacity(0.1), animation.value)!
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = baseStrokeWidth
@@ -70,12 +72,11 @@ class ClassicPainter extends CustomPainter {
       ..blendMode = BlendMode.clear
       ..isAntiAlias = true;
 
-    final progress = Curves.easeInOutCubic.transform(animation.value);
     final translateX = size.width + (progress * -size.width * .75);
-    final translateY = size.height + (progress * -size.height * .75);
+    final translateY = size.height + (progress * -size.height * .80);
 
     canvas.translate(translateX, -translateY);
-    canvas.drawCircle(center, radius * 0.8, eclipseCircle);
+    canvas.drawCircle(center, radius, eclipseCircle);
     canvas.restore();
   }
 

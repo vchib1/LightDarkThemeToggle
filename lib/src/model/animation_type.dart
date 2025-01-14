@@ -1,9 +1,9 @@
 enum AnimationType {
   classic,
-  simple,
   innerMoon,
+  expand,
   darkSide,
-  darkInner,
   eclipse,
   halfSun,
+  simple,
 }

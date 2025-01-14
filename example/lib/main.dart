@@ -34,7 +34,15 @@ class Example extends StatelessWidget {
         title: const Text("Example"),
       ),
       body: Center(
-        child: LightDarkThemeToggle(),
+        child: Wrap(
+          children: AnimationType.values.map(
+            (e) {
+              return LightDarkThemeToggle(
+                animationType: e,
+              );
+            },
+          ).toList(),
+        ),
       ),
     );
   }
