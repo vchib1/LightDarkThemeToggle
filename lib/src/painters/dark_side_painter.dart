@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class DarkSidePainter extends CustomPainter {
   final Animation<double> animation;
@@ -38,7 +39,7 @@ class DarkSidePainter extends CustomPainter {
     canvas.translate(-center.dx, -center.dy);
 
     // Draw the transparent arc
-    canvas.drawArc(arcRect, -math.pi / 2, math.pi, true, clearPaint);
+    canvas.drawArc(arcRect, -getRadian(90), getRadian(180), true, clearPaint);
 
     // Restore canvas to apply transparency effect
     canvas.restore();

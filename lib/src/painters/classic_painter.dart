@@ -80,5 +80,5 @@ class ClassicPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant ClassicPainter oldDelegate) => true;
+  bool shouldRepaint(covariant ClassicPainter oldDelegate) => false;
 }

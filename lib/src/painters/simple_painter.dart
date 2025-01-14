@@ -10,6 +10,7 @@ class SimplePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
 
     final radius = size.width / 2;
+    final eclipseRadius = radius * 0.8;
 
     final paint = Paint()
       ..color = Colors.blue
@@ -22,7 +23,7 @@ class SimplePainter extends CustomPainter {
     canvas.drawCircle(center, radius, paint);
 
     // Create paint for the eclipse (transparent)
-    final eclipseCircle = Paint()..blendMode = BlendMode.clear;
+    final eclipsePaint = Paint()..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
     double translateX = size.width + (animation.value * -size.width * .70);
@@ -31,7 +32,7 @@ class SimplePainter extends CustomPainter {
     canvas.translate(translateX, -center.dy / 3);
 
     // Draw the eclipse
-    canvas.drawCircle(center, radius * 0.8, eclipseCircle);
+    canvas.drawCircle(center, eclipseRadius, eclipsePaint);
 
     // Restore canvas state
     canvas.restore();
