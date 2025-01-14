@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'model/animation_type.dart';
 import 'painters/painters.dart';
 
-const duration = Duration(milliseconds: 500);
-const reverseDuration = Duration(milliseconds: 500);
+const duration = Duration(milliseconds: 300);
+const reverseDuration = Duration(milliseconds: 300);
 const curve = Curves.easeInOut;
 const reverseCurve = Curves.ease;
 const size = 100.0;
@@ -76,7 +76,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
           AnimationType.halfSun => HalfSunPainter(animation: _animation),
           AnimationType.darkSide => DarkSidePainter(animation: _animation),
           AnimationType.innerMoon => InnerMoonPainter(animation: _animation),
-          AnimationType.expand => throw UnimplementedError(),
+          AnimationType.expand => ExpandPainter(animation: _animation),
         },
       ),
     );

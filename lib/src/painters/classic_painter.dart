@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class ClassicPainter extends CustomPainter {
   final Animation<double> animation;
@@ -16,8 +17,8 @@ class ClassicPainter extends CustomPainter {
     final radius = minDimension * 0.325;
 
     // Ray dimensions relative to size
-    final baseStrokeWidth = minDimension * 0.05;
-    final rayGap = minDimension * 0.05;
+    final baseStrokeWidth = minDimension * 0.075;
+    final rayGap = minDimension * 0.075;
     final rayStartRadius = radius + rayGap;
     final rayLength = minDimension * 0.10;
 
@@ -35,7 +36,7 @@ class ClassicPainter extends CustomPainter {
       ..isAntiAlias = true;
 
     const int numRays = 8;
-    const double angleStep = 2 * math.pi / numRays;
+    double angleStep = getRadian(360) / numRays;
 
     if (animation.value < 1.0) {
       canvas.save();

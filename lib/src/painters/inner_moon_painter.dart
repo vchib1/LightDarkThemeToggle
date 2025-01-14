@@ -25,13 +25,13 @@ class InnerMoonPainter extends CustomPainter {
 
     final clipCircle = Rect.fromCircle(
       center: Offset.zero,
-      radius: width * .35,
+      radius: width * .325,
     );
 
     final rect = Rect.fromCenter(
       center: Offset.zero,
-      width: width * .80,
-      height: height * .80,
+      width: width * .75,
+      height: height * .75,
     );
 
     // first box
@@ -58,7 +58,7 @@ class InnerMoonPainter extends CustomPainter {
     final translateX = size.width / 2 + (animation.value * size.width * .175);
     final translateY = size.height / 2;
 
-    canvas.drawCircle(Offset(translateX, translateY), width * .275, paint);
+    canvas.drawCircle(Offset(translateX, translateY), width * .25, paint);
   }
 
   @override
