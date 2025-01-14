@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'painters/painters.dart';
 
-const duration = Duration(milliseconds: 300);
-const reverseDuration = Duration(milliseconds: 300);
-const curve = Curves.easeInOut;
-const reverseCurve = Curves.easeInOut;
+const duration = Duration(milliseconds: 500);
+const reverseDuration = Duration(milliseconds: 500);
+const curve = Curves.ease;
+const reverseCurve = Curves.ease;
 
 class LightDarkThemeToggle extends StatefulWidget {
   // TODO : Add Parameters to get customization
@@ -64,7 +64,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
       },
       icon: CustomPaint(
         size: Size.square(100),
-        painter: SimplePainter(animation: _animation),
+        painter: ClassicPainter(animation: _animation),
       ),
     );
   }

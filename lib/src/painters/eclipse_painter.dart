@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class EclipsePainter extends CustomPainter {
   final Animation<double> animation;
 
-  const EclipsePainter({required this.animation});
+  const EclipsePainter({required this.animation}): super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {

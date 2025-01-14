@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SimplePainter extends CustomPainter {
   final Animation<double> animation;
 
-  const SimplePainter({required this.animation});
+  const SimplePainter({required this.animation}) : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
