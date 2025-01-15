@@ -5,8 +5,12 @@ import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class ExpandPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const ExpandPainter({required this.animation}) : super(repaint: animation);
+  const ExpandPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -15,7 +19,7 @@ class ExpandPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
 
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     final radius = size.width / 2;

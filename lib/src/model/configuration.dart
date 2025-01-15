@@ -8,10 +8,10 @@ class LightDarkThemeToggleConfig {
   final double? size;
 
   const LightDarkThemeToggleConfig({
-    this.duration = const Duration(milliseconds: 500),
-    this.reverseDuration = const Duration(milliseconds: 300),
+    this.duration = const Duration(milliseconds: 750),
+    this.reverseDuration = const Duration(milliseconds: 750),
     this.curve = Curves.easeOutBack,
     this.reverseCurve = Curves.easeOutBack,
     this.size,
-  });
+  }) : assert(size == null || size > 0, 'Size must be null or greater than 0');
 }

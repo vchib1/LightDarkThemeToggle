@@ -1,20 +1,25 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class DarkSidePainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const DarkSidePainter({required this.animation}) : super(repaint: animation);
+  const DarkSidePainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2;
+    final radius = (size.width / 2) * mainRadiusFactor;
 
     // Outer circle paint
     final outerPaint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     // Arc paint (transparent)
@@ -29,8 +34,8 @@ class DarkSidePainter extends CustomPainter {
     // Create the arc rect
     final arcRect = Rect.fromCenter(
       center: center,
-      width: size.width * 0.8,
-      height: size.height * 0.8,
+      width: radius * 1.5,
+      height: radius * 1.5,
     );
 
     // Rotate canvas based on animation

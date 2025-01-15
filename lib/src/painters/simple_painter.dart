@@ -3,8 +3,12 @@ import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 
 class SimplePainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const SimplePainter({required this.animation}) : super(repaint: animation);
+  const SimplePainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -16,7 +20,7 @@ class SimplePainter extends CustomPainter {
     final eclipseRadius = radius * 0.8;
 
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     // Save layer for clipping effect
@@ -29,10 +33,10 @@ class SimplePainter extends CustomPainter {
     final eclipsePaint = Paint()..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
-    double translateX = size.width + (progress * -size.width * .70);
+    double translateX = size.width + (progress * -size.width * .80);
 
     // Apply translation to the canvas
-    canvas.translate(translateX, -center.dy / 3);
+    canvas.translate(translateX, -size.height / 4);
 
     // Draw the eclipse
     canvas.drawCircle(center, eclipseRadius, eclipsePaint);

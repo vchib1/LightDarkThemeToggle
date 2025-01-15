@@ -3,8 +3,12 @@ import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class DarkInnerPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const DarkInnerPainter({required this.animation}) : super(repaint: animation);
+  const DarkInnerPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -15,7 +19,7 @@ class DarkInnerPainter extends CustomPainter {
     final center = Offset(width / 2, height / 2);
 
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     final mainRadius = width / 2 * .90;

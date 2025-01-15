@@ -1,11 +1,14 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class WithinPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const WithinPainter({required this.animation}) : super(repaint: animation);
+  const WithinPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -15,7 +18,6 @@ class WithinPainter extends CustomPainter {
 
     final radius = (size.width / 2) * .90;
     final innerRadius = radius * .70;
-    final eclipseRadius = radius * .50;
 
     final paint = Paint()
       ..color = Colors.blue

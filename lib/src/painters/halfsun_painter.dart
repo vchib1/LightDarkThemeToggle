@@ -4,8 +4,12 @@ import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class HalfSunPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const HalfSunPainter({required this.animation}) : super(repaint: animation);
+  const HalfSunPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -26,7 +30,7 @@ class HalfSunPainter extends CustomPainter {
       height: height * 0.75,
     );
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     final arcRect = Rect.fromCenter(

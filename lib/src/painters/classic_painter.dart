@@ -5,8 +5,12 @@ import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class ClassicPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const ClassicPainter({required this.animation}) : super(repaint: animation);
+  const ClassicPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
@@ -24,12 +28,12 @@ class ClassicPainter extends CustomPainter {
     final rayLength = minDimension * 0.15;
 
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill
       ..isAntiAlias = true;
 
     final rayPaint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = baseStrokeWidth

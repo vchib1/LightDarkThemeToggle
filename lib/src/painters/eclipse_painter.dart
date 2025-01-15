@@ -3,8 +3,12 @@ import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 
 class EclipsePainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const EclipsePainter({required this.animation}) : super(repaint: animation);
+  const EclipsePainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -13,7 +17,7 @@ class EclipsePainter extends CustomPainter {
     final radius = (size.width / 2) * mainRadiusFactor;
 
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     // Save layer for clipping effect

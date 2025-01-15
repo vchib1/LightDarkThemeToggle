@@ -3,15 +3,19 @@ import '../utils/get_radian.dart';
 
 class InnerMoonPainter extends CustomPainter {
   final Animation<double> animation;
+  final Color color;
 
-  const InnerMoonPainter({required this.animation}) : super(repaint: animation);
+  const InnerMoonPainter({
+    required this.animation,
+    required this.color,
+  }) : super(repaint: animation);
 
   double get progress => animation.value;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.blue
+      ..color = color
       ..style = PaintingStyle.fill;
 
     final (height, width) = (size.height, size.width);
