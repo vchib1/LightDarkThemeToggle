@@ -1,4 +1,4 @@
-enum AnimationType {
+enum ThemeIconType {
   classic,
   innerMoon,
   expand,

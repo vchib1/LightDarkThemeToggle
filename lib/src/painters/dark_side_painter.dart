@@ -52,6 +52,6 @@ class DarkSidePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant DarkSidePainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value;
+    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
   }
 }

@@ -67,7 +67,7 @@ class ExpandPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(covariant ExpandPainter oldDelegate) {
+    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
   }
 }

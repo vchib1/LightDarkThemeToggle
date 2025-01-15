@@ -89,5 +89,7 @@ class ClassicPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant ClassicPainter oldDelegate) => false;
+  bool shouldRepaint(covariant ClassicPainter oldDelegate){
+    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+  }
 }

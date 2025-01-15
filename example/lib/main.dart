@@ -5,46 +5,59 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Example(),
-    );
-  }
-}
-
-class Example extends StatelessWidget {
-  const Example({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Example"),
-      ),
-      body: Center(
-        child: Wrap(
-          spacing: 5,
-          runSpacing: 20,
-          children: AnimationType.values.map(
-            (e) {
-              return LightDarkThemeToggle(
-                animationType: e,
-                configuration: LightDarkThemeToggleConfig(size: 100),
-              );
-            },
-          ).toList(),
+      theme: false ? ThemeData.dark() : ThemeData.light(),
+      themeAnimationDuration: Duration(milliseconds: 300),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Example"),
+          actions: [
+            Switch(
+              value: isDarkMode,
+              onChanged: (value) => setState(() => isDarkMode = value),
+            ),
+          ],
+        ),
+        body: Center(
+          child: Wrap(
+            spacing: 5,
+            runSpacing: 20,
+            children: ThemeIconType.values.map(
+              (e) {
+                return Column(
+                  spacing: 10,
+                  children: [
+                    LightDarkThemeToggle(
+                      themeIconType: e,
+                      value: isDarkMode,
+                      onChanged: (value) => setState(() => isDarkMode = value),
+                      configuration: LightDarkThemeToggleConfig(size: 100),
+                    ),
+                    Text(
+                      e.name.substring(0, 1).toUpperCase() +
+                          e.name.substring(1),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                    ),
+                  ],
+                );
+              },
+            ).toList(),
+          ),
         ),
       ),
     );

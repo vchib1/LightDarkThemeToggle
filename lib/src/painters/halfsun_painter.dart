@@ -63,6 +63,7 @@ class HalfSunPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant HalfSunPainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }

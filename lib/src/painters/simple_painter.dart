@@ -47,6 +47,7 @@ class SimplePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant SimplePainter oldDelegate) {
-    return false;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }
