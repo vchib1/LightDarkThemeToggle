@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 
 class EclipsePainter extends CustomPainter {
   final Animation<double> animation;
@@ -9,7 +10,7 @@ class EclipsePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
 
-    final radius = size.width / 2;
+    final radius = (size.width / 2) * mainRadiusFactor;
 
     final paint = Paint()
       ..color = Colors.blue

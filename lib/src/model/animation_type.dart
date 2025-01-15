@@ -6,4 +6,6 @@ enum AnimationType {
   eclipse,
   halfSun,
   simple,
+  darkInner,
+  //within,
 }

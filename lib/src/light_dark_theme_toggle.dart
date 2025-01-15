@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/model/configuration.dart';
 import 'model/animation_type.dart';
 import 'painters/painters.dart';
-
-const duration = Duration(milliseconds: 500);
-const reverseDuration = Duration(milliseconds: 500);
-const curve = Curves.linear;
-const reverseCurve = Curves.linear;
-const size = 100.0;
 
 class LightDarkThemeToggle extends StatefulWidget {
   // TODO : Add Parameters to get customization
   final AnimationType animationType;
-
-  //final Duration duration;
-  //final Duration reverseDuration;
-  //final Curve curve;
+  final LightDarkThemeToggleConfig configuration;
 
   const LightDarkThemeToggle({
     super.key,
     this.animationType = AnimationType.halfSun,
-    //required this.duration,
-    //required this.reverseDuration,
-    //required this.curve,
+    this.configuration = const LightDarkThemeToggleConfig(),
   });
 
   @override
@@ -39,14 +29,14 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: duration,
-      reverseDuration: reverseDuration,
+      duration: widget.configuration.duration,
+      reverseDuration: widget.configuration.reverseDuration,
     );
 
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: curve,
-      reverseCurve: reverseCurve,
+      curve: widget.configuration.curve,
+      reverseCurve: widget.configuration.reverseCurve,
     );
   }
 
@@ -58,6 +48,9 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
 
   @override
   Widget build(BuildContext context) {
+    final size =
+        widget.configuration.size ?? (Theme.of(context).iconTheme.size ?? 24);
+
     return IconButton(
       iconSize: size,
       onPressed: () {
@@ -68,7 +61,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
         }
       },
       icon: CustomPaint(
-        size: const Size.square(size),
+        size: Size.square(size),
         painter: switch (widget.animationType) {
           AnimationType.classic => ClassicPainter(animation: _animation),
           AnimationType.simple => SimplePainter(animation: _animation),
@@ -77,6 +70,7 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
           AnimationType.darkSide => DarkSidePainter(animation: _animation),
           AnimationType.innerMoon => InnerMoonPainter(animation: _animation),
           AnimationType.expand => ExpandPainter(animation: _animation),
+          AnimationType.darkInner => DarkInnerPainter(animation: _animation),
         },
       ),
     );

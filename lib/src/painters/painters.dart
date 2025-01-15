@@ -7,4 +7,5 @@ export 'expand_painter.dart';
 export 'halfsun_painter.dart';
 export 'inner_moon_painter.dart';
 export 'simple_painter.dart';
+export 'within_painter.dart';
 

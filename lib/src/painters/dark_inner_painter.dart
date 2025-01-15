@@ -6,6 +6,8 @@ class DarkInnerPainter extends CustomPainter {
 
   const DarkInnerPainter({required this.animation}) : super(repaint: animation);
 
+  double get progress => animation.value;
+
   @override
   void paint(Canvas canvas, Size size) {
     final (height, width) = (size.height, size.width);
@@ -16,27 +18,55 @@ class DarkInnerPainter extends CustomPainter {
       ..color = Colors.blue
       ..style = PaintingStyle.fill;
 
-    final mainRadius = width;
+    final mainRadius = width / 2 * .90;
+    final innerRadius = mainRadius * .50;
 
-    final mainRect =
-        Rect.fromCenter(center: center, width: mainRadius, height: mainRadius);
+    // Save layer for clipping effect
+    canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());
 
-    final rect = Rect.fromCenter(
-        center: center, width: width * .75, height: height * .75);
+    canvas.drawCircle(center, mainRadius, paint);
 
-    final rect2 = Rect.fromCenter(
-        center: center, width: mainRadius * .45, height: mainRadius * .45);
+    canvas.translate(center.dx, center.dy);
+
+    final outerArc = Rect.fromCenter(
+      center: Offset.zero,
+      width: width * .70,
+      height: height * .70,
+    );
+
+    canvas.rotate(getRadian(180) * progress);
+
+    canvas.drawArc(
+      outerArc,
+      -getRadian(90),
+      getRadian(180),
+      false,
+      Paint()..blendMode = BlendMode.clear,
+    );
+
+    canvas.translate(-center.dx, -center.dy);
+
+    canvas.drawCircle(
+      center,
+      innerRadius,
+      Paint()..blendMode = BlendMode.clear,
+    );
+
+    canvas.restore();
 
     canvas.save();
 
-    canvas.drawPath(
-      Path()
-        ..addOval(mainRect)
-        ..addArc(rect, -getRadian(90), getRadian(180))
-        ..addArc(rect2, -getRadian(90), getRadian(180))
-        ..fillType = PathFillType.evenOdd,
-      paint,
+    canvas.translate(center.dx, center.dy);
+
+    canvas.rotate(-getRadian(180) * progress);
+
+    final innerArc = Rect.fromCenter(
+      center: Offset.zero,
+      width: mainRadius,
+      height: mainRadius,
     );
+
+    canvas.drawArc(innerArc, -getRadian(90), getRadian(180), false, paint);
 
     canvas.restore();
   }

@@ -39,7 +39,10 @@ class Example extends StatelessWidget {
           runSpacing: 20,
           children: AnimationType.values.map(
             (e) {
-              return LightDarkThemeToggle(animationType: e);
+              return LightDarkThemeToggle(
+                animationType: e,
+                configuration: LightDarkThemeToggleConfig(size: 100),
+              );
             },
           ).toList(),
         ),

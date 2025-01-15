@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 
 class SimplePainter extends CustomPainter {
   final Animation<double> animation;
@@ -11,7 +12,7 @@ class SimplePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
 
-    final radius = size.width / 2;
+    final radius = size.width / 2 * mainRadiusFactor;
     final eclipseRadius = radius * 0.8;
 
     final paint = Paint()

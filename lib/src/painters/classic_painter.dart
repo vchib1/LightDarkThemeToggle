@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
@@ -41,13 +42,13 @@ class ClassicPainter extends CustomPainter {
       canvas.save();
       canvas.translate(center.dx, center.dy);
 
-      final rotationAngle = math.pi * (1 + animation.value * 0.35);
-      final scale = math.max(0.01, 1 - animation.value);
+      final rotationAngle = getRadian(30) * progress;
+      final scale = lerpDouble(1, 0, progress * .75)!;
 
       canvas.rotate(rotationAngle);
       canvas.scale(scale);
 
-      final rayOpacity = (1 - progress).clamp(0.0, 1.0);
+      final rayOpacity = lerpDouble(1, 0, progress)!;
       final rayColor = rayPaint.color.withValues(alpha: rayOpacity);
 
       for (int i = 0; i < numRays; i++) {
@@ -59,8 +60,11 @@ class ClassicPainter extends CustomPainter {
         final xEnd = (rayStartRadius + rayLength) * math.cos(angle);
         final yEnd = (rayStartRadius + rayLength) * math.sin(angle);
 
-        canvas.drawLine(Offset(xStart, yStart), Offset(xEnd, yEnd),
-            rayPaint..color = rayColor);
+        canvas.drawLine(
+          Offset(xStart, yStart),
+          Offset(xEnd, yEnd),
+          rayPaint..color = rayColor,
+        );
       }
       canvas.restore();
     }
