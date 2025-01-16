@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
             value: false,
             // Initial value (false for dark, true for light)
             onChanged: (bool value) {
-              // Handle theme change here
+              // Handle theme change here.
             },
             size: 48.0,
             themeIconType: ThemeIconType.expand,
