@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:light_dark_theme_toggle/src/model/configuration.dart';
 import 'model/theme_icon_type.dart';
 import 'painters/painters.dart';
 
+/// The main widget for the [LightDarkThemeToggle]
+///
+///  * **size**: The size of the icon
+///  * **value**: The current value of the toggle
+///  * **onChanged**: Called when the toggle is pressed
+///  * **themeIconType**: The type of the icon to display
+///  * **color**: The color of the icon
+///  * **padding**: The padding of the icon
+///  * **tooltip**: The tooltip of the icon
+///  * **duration**: The duration of the animation
+///  * **reverseDuration**: The duration of the reverse animation
+///  * **curve**: The curve of the animation
+///  * **reverseCurve**: The curve of the reverse animation
+///
 class LightDarkThemeToggle extends StatefulWidget {
   const LightDarkThemeToggle({
     super.key,
+    this.size,
     required this.value,
     required this.onChanged,
-    this.themeIconType = ThemeIconType.halfSun,
-    this.configuration = const LightDarkThemeToggleConfig(),
+    this.themeIconType = ThemeIconType.expand,
     this.color,
     this.padding,
     this.tooltip,
+    this.duration = const Duration(milliseconds: 750),
+    this.reverseDuration = const Duration(milliseconds: 750),
+    this.curve = Curves.easeOutBack,
+    this.reverseCurve = Curves.easeOutBack,
   });
 
   /// The current value of the toggle
@@ -29,17 +46,12 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   /// The type of the icon to display
   ///
-  /// Defaults to [ThemeIconType.halfSun]
+  /// Defaults to [ThemeIconType.expand]
   final ThemeIconType themeIconType;
-
-  /// The configuration of the toggle
-  ///
-  /// Defaults to [LightDarkThemeToggleConfig()]
-  final LightDarkThemeToggleConfig configuration;
 
   /// The color of the icon
   ///
-  /// Defaults to [Brightness == dark ? Colors.white : Colors.black]
+  /// Defaults to [Theme.of(context).colorScheme.onSurface]
   final Color? color;
 
   /// The tooltip of the icon
@@ -51,6 +63,31 @@ class LightDarkThemeToggle extends StatefulWidget {
   ///
   /// Defaults to [null]
   final EdgeInsetsGeometry? padding;
+
+  /// The duration of the animation.
+  ///
+  /// Defaults to [Duration(milliseconds: 750)].
+  final Duration duration;
+
+  /// The duration of the reverse animation.
+  ///
+  /// Defaults to [Duration(milliseconds: 750)].
+  final Duration reverseDuration;
+
+  /// The curve of the animation.
+  ///
+  /// Defaults to [Curves.easeInOutCubic].
+  final Curve curve;
+
+  /// The curve of the reverse animation.
+  ///
+  /// Defaults to [Curves.easeInOutCubic].
+  final Curve reverseCurve;
+
+  /// The size of the icon.
+  ///
+  /// Defaults to [IconTheme.size ?? 24.0].
+  final double? size;
 
   @override
   State<LightDarkThemeToggle> createState() => _LightDarkThemeToggleState();
@@ -66,14 +103,14 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: widget.configuration.duration,
-      reverseDuration: widget.configuration.reverseDuration,
+      duration: widget.duration,
+      reverseDuration: widget.reverseDuration,
     );
 
     _animation = CurvedAnimation(
       parent: _controller,
-      curve: widget.configuration.curve,
-      reverseCurve: widget.configuration.reverseCurve,
+      curve: widget.curve,
+      reverseCurve: widget.reverseCurve,
     );
 
     _controller.value = widget.value ? 1 : 0;
@@ -83,14 +120,9 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
   void didUpdateWidget(LightDarkThemeToggle oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    // If the value has changed
-    // start the animation
+    // If the value has changed, start the animation
     if (widget.value != oldWidget.value) {
-      if (widget.value) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
+      widget.value ? _controller.forward() : _controller.reverse();
     }
   }
 
@@ -103,16 +135,14 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
   @override
   Widget build(BuildContext context) {
     final iconTheme = Theme.of(context).iconTheme;
-    final size = widget.configuration.size ?? (iconTheme.size ?? 24);
+    final size = widget.size ?? (iconTheme.size ?? 24);
     final color = widget.color ?? Theme.of(context).colorScheme.onSurface;
 
     return IconButton(
-      onPressed: () {
-        widget.onChanged(!widget.value);
-      },
-      iconSize: size,
+      onPressed: () => widget.onChanged(!widget.value),
       tooltip: widget.tooltip,
       padding: widget.padding,
+      alignment: Alignment.center,
       icon: CustomPaint(
         size: Size.square(size),
         painter: switch (widget.themeIconType) {

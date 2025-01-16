@@ -1,123 +1,72 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# LightDarkThemeToggle
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-# Light Dark Theme Toggle
-
-A highly customizable and animated Flutter widget for toggling between light and dark themes. This package provides multiple beautiful transition animations and styles for theme switching, perfect for enhancing your app's user interface.
+The `LightDarkThemeToggle` widget is a customizable and animated light/dark theme toggle switch for
+Flutter apps. It provides a visually appealing way for users to switch between light and dark modes
+in your app.
 
 ## Features
 
-- 🎨 8 unique animation styles:
-    - Classic Sun/Moon
-    - Simple Toggle
-    - Eclipse
-    - Half Sun
-    - Dark Side
-    - Inner Moon
-    - Expand
-    - Dark Inner
+- Customizable size, color, padding, and tooltip.
+- Smooth animations with adjustable duration and curves.
+- Multiple animated icon styles using different theme icon types.
 
-- ⚡ Smooth, customizable animations
-- 🎯 Pixel-perfect rendering using CustomPainter
-- 🛠️ Highly configurable:
-    - Custom colors
-    - Adjustable size
-    - Custom animation duration
-    - Custom curves
-    - Tooltips
-    - Padding
+## Preview
 
-## Getting Started
+![LightDarkThemeToggle Demo](https://github.com/vchib1/LightDarkThemeToggle/raw/master/example/assets/demo.gif)
 
-Add the package to your `pubspec.yaml`:
+---
+
+## Installation
+
+1. Add the dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   light_dark_theme_toggle: ^1.0.0
 ```
 
-Import it in your code:
+2. Import the package in your Dart file:
 
 ```dart
 import 'package:light_dark_theme_toggle/light_dark_theme_toggle.dart';
 ```
 
+---
+
 ## Usage
 
-### Basic Usage
+Here is an example of how to use the `LightDarkThemeToggle` widget:
 
 ```dart
-bool isDarkMode = false;
+import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/light_dark_theme_toggle.dart';
+import 'model/theme_icon_type.dart';
 
-LightDarkThemeToggle(
-  value: isDarkMode,
-  onChanged: (value) {
-    setState(() {
-      isDarkMode = value;
-    });
-  },
-)
-```
+void main() => runApp(MyApp());
 
-### Customized Toggle
-
-```dart
-LightDarkThemeToggle(
-  value: isDarkMode,
-  onChanged: (value) {
-    setState(() {
-      isDarkMode = value;
-    });
-  },
-  themeIconType: ThemeIconType.classic,
-  configuration: LightDarkThemeToggleConfig(
-    size: 30,
-    duration: const Duration(milliseconds: 500),
-    curve: Curves.easeInOut,
-  ),
-  color: Colors.blue,
-  tooltip: 'Change theme',
-  padding: const EdgeInsets.all(8),
-)
-```
-
-### With Theme Switching
-
-```dart
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool isDarkMode = false;
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
       home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            LightDarkThemeToggle(
-              value: isDarkMode,
-              onChanged: (value) {
-                setState(() {
-                  isDarkMode = value;
-                });
-              },
-            ),
-          ],
+        appBar: AppBar(title: Text('Light/Dark Theme Toggle')),
+        body: Center(
+          child: LightDarkThemeToggle(
+            value: false,
+            // Initial value (false for dark, true for light)
+            onChanged: (bool value) {
+              // Handle theme change here
+            },
+            size: 48.0,
+            themeIconType: ThemeIconType.expand,
+            color: Colors.orange,
+            tooltip: 'Toggle Theme',
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          ),
         ),
       ),
     );
@@ -125,64 +74,94 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 
-## Animation Styles
+---
 
-### Classic Sun/Moon
-The traditional sun-to-moon transition with rays that fade out during the animation.
+## Properties
 
-### Simple Toggle
-A minimalist toggle with a clean transition between light and dark states.
+| Property          | Type                  | Default                                   | Description                                                            |
+|-------------------|-----------------------|-------------------------------------------|------------------------------------------------------------------------|
+| `value`           | `bool`                | Required                                  | Determines whether the toggle is in light (true) or dark (false) mode. |
+| `onChanged`       | `ValueChanged<bool>`  | Required                                  | Callback when the toggle is pressed.                                   |
+| `themeIconType`   | `ThemeIconType`       | `ThemeIconType.expand`                    | Defines the style of the icon.                                         |
+| `color`           | `Color?`              | `Theme.of(context).colorScheme.onSurface` | Color of the icon.                                                     |
+| `tooltip`         | `String?`             | `null`                                    | Tooltip displayed on long press.                                       |
+| `padding`         | `EdgeInsetsGeometry?` | `null`                                    | Padding around the icon.                                               |
+| `size`            | `double?`             | `IconTheme.size ?? 24.0`                  | Size of the icon.                                                      |
+| `duration`        | `Duration`            | `Duration(milliseconds: 750)`             | Duration of the animation.                                             |
+| `reverseDuration` | `Duration`            | `Duration(milliseconds: 750)`             | Duration of the reverse animation.                                     |
+| `curve`           | `Curve`               | `Curves.easeOutBack`                      | Animation curve for the forward animation.                             |
+| `reverseCurve`    | `Curve`               | `Curves.easeOutBack`                      | Animation curve for the reverse animation.                             |
 
-### Eclipse
-Simulates a solar eclipse effect for the theme transition.
+---
 
-### Half Sun
-A modern interpretation showing a half-sun morphing into a moon.
+## Theme Icon Types
 
-### Dark Side
-Inspired by the phases of the moon with a sliding dark side.
+The widget supports the following icon types via the `ThemeIconType` enum:
 
-### Inner Moon
-Features an inner circle that transforms for the theme change.
+- **Classic**
+- **Simple**
+- **Eclipse**
+- **HalfSun**
+- **DarkSide**
+- **InnerMoon**
+- **Expand**
+- **DarkInner**
 
-### Expand
-An expanding circular transition between states.
-
-### Dark Inner
-Displays an inner shadow effect during the transition.
-
-## Configuration Options
-
-The `LightDarkThemeToggleConfig` class allows you to customize:
+To use an icon type, pass it to the `themeIconType` property. For example:
 
 ```dart
-LightDarkThemeToggleConfig(
-  size: 24.0,                    // Icon size
-  duration: Duration(ms: 300),   // Animation duration
-  reverseDuration: Duration(...),// Reverse animation duration
-  curve: Curves.easeInOut,      // Animation curve
-  reverseCurve: Curves.easeIn,  // Reverse animation curve
+LightDarkThemeToggle
+(
+themeIconType
+:
+ThemeIconType
+.
+eclipse
+,
+...
 )
 ```
 
-## Additional Information
+---
 
-### Compatibility
-- Flutter: >=3.0.0
-- Dart: >=3.0.0
+## Customization
 
-### Contributing
-Contributions are welcome! If you find a bug or want to add a new feature:
-1. Open an issue
-2. Create a pull request with your changes
-3. Follow the existing code style
-4. Add tests for new functionality
+### Animation
 
-### License
-This project is licensed under the MIT License - see the LICENSE file for details.
+You can adjust the animation by changing:
 
-### Support
-For bugs or feature requests, please open an issue on the GitHub repository.
+- `duration`: Duration of the forward animation.
+- `reverseDuration`: Duration of the reverse animation.
+- `curve`: Curve for forward animation.
+- `reverseCurve`: Curve for reverse animation.
 
-### Credits
-Created and maintained by [Your Name/Organization]
+### Appearance
+
+You can customize the icon's:
+
+- `size`: Adjust the size of the toggle.
+- `color`: Change the icon's color.
+- `padding`: Add padding around the icon.
+- `tooltip`: Set a tooltip message for accessibility.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Contributions
+
+Contributions, issues, and feature requests are welcome! Feel free to check out
+the [issues page](https://github.com/vchib1/LightDarkThemeToggle/issues).
+
+---
+
+## Acknowledgments
+
+This package is inspired by [toggle.dev](https://toggle.dev/) created
+by [Alfie Jones](https://github.com/AlfieJones).  
+Special thanks for providing inspiration and ideas that helped shape this package.
+

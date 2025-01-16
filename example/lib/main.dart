@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:light_dark_theme_toggle/light_dark_theme_toggle.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -18,45 +16,48 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: false ? ThemeData.dark() : ThemeData.light(),
-      themeAnimationDuration: Duration(milliseconds: 300),
+      debugShowCheckedModeBanner: false,
+      theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Example"),
+          title: const Text('Light/Dark Theme Toggle'),
           actions: [
-            Switch(
-              value: isDarkMode,
-              onChanged: (value) => setState(() => isDarkMode = value),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: LightDarkThemeToggle(
+                value: isDarkMode,
+                onChanged: (value) {
+                  setState(() {
+                    isDarkMode = value;
+                  });
+                },
+              ),
             ),
           ],
         ),
         body: Center(
           child: Wrap(
-            spacing: 5,
-            runSpacing: 20,
-            children: ThemeIconType.values.map(
-              (e) {
-                return Column(
-                  spacing: 10,
-                  children: [
-                    LightDarkThemeToggle(
-                      themeIconType: e,
-                      value: isDarkMode,
-                      onChanged: (value) => setState(() => isDarkMode = value),
-                      configuration: LightDarkThemeToggleConfig(size: 100),
-                    ),
-                    Text(
-                      e.name.substring(0, 1).toUpperCase() +
-                          e.name.substring(1),
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                    ),
-                  ],
-                );
-              },
-            ).toList(),
+            children: ThemeIconType.values.map((iconType) {
+              return Column(
+                spacing: 10,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  LightDarkThemeToggle(
+                    value: isDarkMode,
+                    themeIconType: iconType,
+                    onChanged: (value) {
+                      setState(() {
+                        isDarkMode = value;
+                      });
+                    },
+                  ),
+                  Text(
+                    iconType.name.substring(0, 1).toUpperCase() +
+                        iconType.name.substring(1),
+                  ),
+                ],
+              );
+            }).toList(),
           ),
         ),
       ),

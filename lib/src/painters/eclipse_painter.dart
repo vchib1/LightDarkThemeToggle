@@ -18,6 +18,7 @@ class EclipsePainter extends CustomPainter {
 
     final paint = Paint()
       ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     // Save layer for clipping effect
@@ -27,7 +28,7 @@ class EclipsePainter extends CustomPainter {
     canvas.drawCircle(center, radius, paint);
 
     // Create paint for the eclipse (transparent)
-    final eclipseCircle = Paint()..blendMode = BlendMode.clear;
+    final eclipseCircle = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
     double translateX = size.width + (animation.value * -size.width);
@@ -44,6 +45,7 @@ class EclipsePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant EclipsePainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }
