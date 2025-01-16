@@ -111,15 +111,9 @@ The widget supports the following icon types via the `ThemeIconType` enum:
 To use an icon type, pass it to the `themeIconType` property. For example:
 
 ```dart
-LightDarkThemeToggle
-(
-themeIconType
-:
-ThemeIconType
-.
-eclipse
-,
-...
+LightDarkThemeToggle(
+  themeIconType: ThemeIconType.eclipse,
+  ...
 )
 ```
 
