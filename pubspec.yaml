@@ -1,5 +1,5 @@
 name: light_dark_theme_toggle
-description: "A Flutter package to toggle between light and dark theme. "
+description: "A Flutter package offering 8 pre-made animations using CustomPainter to smoothly transition between light and dark themes, perfect for creating dynamic theme switching effects."
 version: 1.0.0
 homepage: "https://github.com/vchib1/LightDarkThemeToggle"
 repository: "https://github.com/vchib1/LightDarkThemeToggle"
