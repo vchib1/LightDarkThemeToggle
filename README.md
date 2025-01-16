@@ -9,6 +9,7 @@ in your app.
 - Customizable size, color, padding, and tooltip.
 - Smooth animations with adjustable duration and curves.
 - Multiple animated icon styles using different theme icon types.
+- Built entirely with Dart code and `CustomPainter` for efficient rendering and better performance.
 
 ## Preview
 
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
             value: false,
             // Initial value (false for dark, true for light)
             onChanged: (bool value) {
-              // Handle theme change here
+              // Handle theme change here.
             },
             size: 48.0,
             themeIconType: ThemeIconType.expand,
