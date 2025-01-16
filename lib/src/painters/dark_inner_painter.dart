@@ -20,6 +20,7 @@ class DarkInnerPainter extends CustomPainter {
 
     final paint = Paint()
       ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     final mainRadius = width / 2 * .90;

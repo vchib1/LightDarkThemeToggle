@@ -20,10 +20,11 @@ class DarkSidePainter extends CustomPainter {
     // Outer circle paint
     final outerPaint = Paint()
       ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     // Arc paint (transparent)
-    final clearPaint = Paint()..blendMode = BlendMode.clear;
+    final clearPaint = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
 
     // Save layer for clipping effect
     canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());

@@ -21,9 +21,9 @@ class ClassicPainter extends CustomPainter {
     final minDimension = math.min(size.width, size.height);
     final radius = minDimension * 0.325;
 
-    // Ray dimensions relative to size
+    // Ray dimensions
     final baseStrokeWidth = minDimension * 0.05;
-    final rayGap = minDimension * 0.075;
+    final rayGap = minDimension * 0.1;
     final rayStartRadius = (radius * .90) + rayGap;
     final rayLength = minDimension * 0.15;
 
@@ -89,7 +89,8 @@ class ClassicPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant ClassicPainter oldDelegate){
-    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+  bool shouldRepaint(covariant ClassicPainter oldDelegate) {
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }

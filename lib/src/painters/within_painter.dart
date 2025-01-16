@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 
 class WithinPainter extends CustomPainter {
   final Animation<double> animation;
@@ -16,11 +17,12 @@ class WithinPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
 
-    final radius = (size.width / 2) * .90;
+    final radius = (size.width / 2) * mainRadiusFactor;
     final innerRadius = radius * .70;
 
     final paint = Paint()
       ..color = Colors.blue
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     // Save layer for clipping effect
@@ -33,7 +35,9 @@ class WithinPainter extends CustomPainter {
     canvas.drawCircle(center, scaleRadius, paint);
 
     // Create paint for the eclipse (transparent)
-    final innerCirclePaint = Paint()..blendMode = BlendMode.clear;
+    final innerCirclePaint = Paint()
+      ..isAntiAlias = true
+      ..blendMode = BlendMode.clear;
 
     // Apply translation to the canvas
     canvas.translate(-center.dx, -center.dy);

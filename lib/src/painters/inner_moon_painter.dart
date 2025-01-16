@@ -15,7 +15,7 @@ class InnerMoonPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = color
+      ..color = color..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     final (height, width) = (size.height, size.width);
