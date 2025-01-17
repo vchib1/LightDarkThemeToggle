@@ -24,7 +24,9 @@ class DarkSidePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     // Arc paint (transparent)
-    final clearPaint = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
+    final clearPaint = Paint()
+      ..isAntiAlias = true
+      ..blendMode = BlendMode.clear;
 
     // Save layer for clipping effect
     canvas.saveLayer(Rect.fromLTWH(0, 0, size.width, size.height), Paint());
@@ -53,6 +55,7 @@ class DarkSidePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant DarkSidePainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }

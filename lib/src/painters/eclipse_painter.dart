@@ -28,7 +28,9 @@ class EclipsePainter extends CustomPainter {
     canvas.drawCircle(center, radius, paint);
 
     // Create paint for the eclipse (transparent)
-    final eclipseCircle = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
+    final eclipseCircle = Paint()
+      ..isAntiAlias = true
+      ..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
     double translateX = size.width + (animation.value * -size.width);

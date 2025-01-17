@@ -20,7 +20,8 @@ class SimplePainter extends CustomPainter {
     final eclipseRadius = radius * 0.8;
 
     final paint = Paint()
-      ..color = color..isAntiAlias = true
+      ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     // Save layer for clipping effect
@@ -30,7 +31,9 @@ class SimplePainter extends CustomPainter {
     canvas.drawCircle(center, radius, paint);
 
     // Create paint for the eclipse (transparent)
-    final eclipsePaint = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
+    final eclipsePaint = Paint()
+      ..isAntiAlias = true
+      ..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
     double translateX = size.width + (progress * -size.width * .80);

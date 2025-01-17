@@ -30,7 +30,8 @@ class HalfSunPainter extends CustomPainter {
       height: height * 0.75,
     );
     final paint = Paint()
-      ..color = color..isAntiAlias = true
+      ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     final arcRect = Rect.fromCenter(

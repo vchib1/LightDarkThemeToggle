@@ -19,7 +19,8 @@ class ExpandPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
 
     final paint = Paint()
-      ..color = color..isAntiAlias = true
+      ..color = color
+      ..isAntiAlias = true
       ..style = PaintingStyle.fill;
 
     final radius = size.width / 2;
@@ -50,7 +51,9 @@ class ExpandPainter extends CustomPainter {
     canvas.drawCircle(center, mainCircleRadius, paint);
 
     // Create paint for the eclipse (transparent)
-    final eclipsePaint = Paint()..isAntiAlias = true..blendMode = BlendMode.clear;
+    final eclipsePaint = Paint()
+      ..isAntiAlias = true
+      ..blendMode = BlendMode.clear;
 
     // Move the eclipse circle from the right to the center
     double translateX = size.width + (progress * -size.width * .75);
@@ -68,6 +71,7 @@ class ExpandPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant ExpandPainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }

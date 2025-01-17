@@ -156,7 +156,7 @@ the [issues page](https://github.com/vchib1/LightDarkThemeToggle/issues).
 
 ## Acknowledgments
 
-This package is inspired by [toggle.dev](https://toggle.dev/) created
+This package is inspired by [toggle.dev](https://toggles.dev/) created
 by [Alfie Jones](https://github.com/AlfieJones).  
 Special thanks for providing inspiration and ideas that helped shape this package.
 

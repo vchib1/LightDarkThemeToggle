@@ -78,6 +78,7 @@ class DarkInnerPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant DarkInnerPainter oldDelegate) {
-    return animation.value != oldDelegate.animation.value || color != oldDelegate.color;
+    return animation.value != oldDelegate.animation.value ||
+        color != oldDelegate.color;
   }
 }
