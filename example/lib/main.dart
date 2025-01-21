@@ -20,10 +20,10 @@ class _MyAppState extends State<MyApp> {
       theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Light/Dark Theme Toggle'),
+          title: const Text('Light/Dark Theme Toggle Example'),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 16.0),
               child: LightDarkThemeToggle(
                 value: isDarkMode,
                 onChanged: (value) {
@@ -35,31 +35,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-        body: Center(
-          child: Wrap(
-            children: ThemeIconType.values.map((iconType) {
-              return Column(
-                spacing: 10,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  LightDarkThemeToggle(
-                    value: isDarkMode,
-                    themeIconType: iconType,
-                    onChanged: (value) {
-                      setState(() {
-                        isDarkMode = value;
-                      });
-                    },
-                  ),
-                  Text(
-                    iconType.name.substring(0, 1).toUpperCase() +
-                        iconType.name.substring(1),
-                  ),
-                ],
-              );
-            }).toList(),
-          ),
-        ),
+        body: Center(child: Text('Toggle the toggle!')),
       ),
     );
   }

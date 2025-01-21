@@ -1,7 +1,7 @@
 name: light_dark_theme_toggle
-description: "The LightDarkThemeToggle widget is a customizable and animated light/dark theme toggle switch for Flutter apps. It provides a visually appealing way for users to switch between light and dark modes in your app."
-version: 1.0.1
-homepage: "https://github.com/vchib1/LightDarkThemeToggle"
+description: "An animated, customizable Flutter widget for switching between light and dark modes with a visually appealing toggle."
+version: 1.0.2
+homepage: "https://vchib1.github.io/LightDarkThemeToggleWebApp/"
 repository: "https://github.com/vchib1/LightDarkThemeToggle"
 issue_tracker: "https://github.com/vchib1/LightDarkThemeToggle/issues"
 

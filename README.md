@@ -11,9 +11,13 @@ in your app.
 - Multiple animated icon styles using different theme icon types.
 - Built entirely with Dart code and `CustomPainter` for efficient rendering and better performance.
 
+## Demo
+
+[LightDarkThemeToggle Web App](https://vchib1.github.io/LightDarkThemeToggleWebApp/)
+
 ## Preview
 
-![LightDarkThemeToggle Demo](https://github.com/vchib1/LightDarkThemeToggle/raw/master/example/assets/demo.gif)
+![LightDarkThemeToggle Demo](https://raw.githubusercontent.com/vchib1/LightDarkThemeToggleWebApp/refs/heads/master/assets/demo.gif)
 
 ---
 
@@ -23,7 +27,7 @@ in your app.
 
 ```yaml
 dependencies:
-  light_dark_theme_toggle: ^1.0.0
+  light_dark_theme_toggle: ^1.0.2
 ```
 
 2. Import the package in your Dart file:
@@ -112,9 +116,9 @@ To use an icon type, pass it to the `themeIconType` property. For example:
 
 ```dart
 LightDarkThemeToggle(
-  themeIconType: ThemeIconType.eclipse,
-  ...
-)
+    themeIconType:ThemeIconType.eclipse,
+    ...
+  )
 ```
 
 ---
@@ -151,6 +155,12 @@ This project is licensed under the [MIT License](LICENSE).
 
 Contributions, issues, and feature requests are welcome! Feel free to check out
 the [issues page](https://github.com/vchib1/LightDarkThemeToggle/issues).
+
+---
+
+## Author
+
+[Vivek Chib](https://github.com/vchib1)
 
 ---
 
