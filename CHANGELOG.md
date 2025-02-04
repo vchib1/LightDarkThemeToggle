@@ -1,3 +1,10 @@
+## 1.1.0
+
+* Added optional `focusColor`, `splashColor`, `highlightColor`, and `hoverColor` for better
+  customization.
+* Updated default value for `duration` and `reverseDuration` to `Duration(milliseconds: 500)` for
+  quick animation
+
 ## 1.0.2
 
 * added demo website to readme.md

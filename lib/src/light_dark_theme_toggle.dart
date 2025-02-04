@@ -3,19 +3,6 @@ import 'model/theme_icon_type.dart';
 import 'painters/painters.dart';
 
 /// The main widget for the [LightDarkThemeToggle]
-///
-///  * **size**: The size of the icon
-///  * **value**: The current value of the toggle
-///  * **onChanged**: Called when the toggle is pressed
-///  * **themeIconType**: The type of the icon to display
-///  * **color**: The color of the icon
-///  * **padding**: The padding of the icon
-///  * **tooltip**: The tooltip of the icon
-///  * **duration**: The duration of the animation
-///  * **reverseDuration**: The duration of the reverse animation
-///  * **curve**: The curve of the animation
-///  * **reverseCurve**: The curve of the reverse animation
-///
 class LightDarkThemeToggle extends StatefulWidget {
   const LightDarkThemeToggle({
     super.key,
@@ -24,10 +11,14 @@ class LightDarkThemeToggle extends StatefulWidget {
     required this.onChanged,
     this.themeIconType = ThemeIconType.expand,
     this.color,
+    this.hoverColor,
+    this.highlightColor,
+    this.focusColor,
+    this.splashColor,
     this.padding,
     this.tooltip,
-    this.duration = const Duration(milliseconds: 750),
-    this.reverseDuration = const Duration(milliseconds: 750),
+    this.duration = const Duration(milliseconds: 500),
+    this.reverseDuration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOutBack,
     this.reverseCurve = Curves.easeOutBack,
   });
@@ -51,8 +42,30 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   /// The color of the icon
   ///
-  /// Defaults to [Theme.of(context).colorScheme.onSurface]
+  /// Defaults to [ThemeData.colorScheme.onSurface]
   final Color? color;
+
+  /// The Color of the Toggle while hovering
+  ///
+  /// Defaults to [ThemeData.hoverColor]
+  final Color? hoverColor;
+
+  /// The Color of the Toggle when it has the input focus.
+  ///
+  /// Defaults to [ThemeData.focusColor]
+  final Color? focusColor;
+
+  /// The Color of the Toggle in pressed down state.
+  ///
+  /// Defaults to [ThemeData.highlightColor]
+  final Color? highlightColor;
+
+  /// The Splash Color of the Toggle.
+  ///
+  /// Defaults to [ThemeData.splashColor]
+  ///
+  /// If [ThemeData.useMaterial3] is set to true, this will not be used. Use [highlightColor] instead to show the overlay color of the button when the button is in the pressed state.
+  final Color? splashColor;
 
   /// The tooltip of the icon
   ///
@@ -66,12 +79,12 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   /// The duration of the animation.
   ///
-  /// Defaults to [Duration(milliseconds: 750)].
+  /// Defaults to [Duration(milliseconds: 5000)].
   final Duration duration;
 
   /// The duration of the reverse animation.
   ///
-  /// Defaults to [Duration(milliseconds: 750)].
+  /// Defaults to [Duration(milliseconds: 500)].
   final Duration reverseDuration;
 
   /// The curve of the animation.
@@ -86,7 +99,7 @@ class LightDarkThemeToggle extends StatefulWidget {
 
   /// The size of the icon.
   ///
-  /// Defaults to [IconTheme.size ?? 24.0].
+  /// Defaults to [IconTheme.size] ?? [24.0].
   final double? size;
 
   @override
@@ -135,14 +148,18 @@ class _LightDarkThemeToggleState extends State<LightDarkThemeToggle>
   @override
   Widget build(BuildContext context) {
     final iconTheme = Theme.of(context).iconTheme;
-    final size = widget.size ?? (iconTheme.size ?? 24);
+    final size = widget.size ?? (iconTheme.size ?? 24.0);
     final color = widget.color ?? Theme.of(context).colorScheme.onSurface;
 
     return IconButton(
       onPressed: () => widget.onChanged(!widget.value),
+      alignment: Alignment.center,
+      hoverColor: widget.hoverColor,
+      focusColor: widget.focusColor,
+      highlightColor: widget.highlightColor,
+      splashColor: widget.splashColor,
       tooltip: widget.tooltip,
       padding: widget.padding,
-      alignment: Alignment.center,
       icon: CustomPaint(
         size: Size.square(size),
         painter: switch (widget.themeIconType) {

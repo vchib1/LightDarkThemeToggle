@@ -27,7 +27,7 @@ in your app.
 
 ```yaml
 dependencies:
-  light_dark_theme_toggle: ^1.0.2
+  light_dark_theme_toggle: ^1.1.0
 ```
 
 2. Import the package in your Dart file:
@@ -83,19 +83,23 @@ class MyApp extends StatelessWidget {
 
 ## Properties
 
-| Property          | Type                  | Default                                   | Description                                                            |
-|-------------------|-----------------------|-------------------------------------------|------------------------------------------------------------------------|
-| `value`           | `bool`                | Required                                  | Determines whether the toggle is in light (true) or dark (false) mode. |
-| `onChanged`       | `ValueChanged<bool>`  | Required                                  | Callback when the toggle is pressed.                                   |
-| `themeIconType`   | `ThemeIconType`       | `ThemeIconType.expand`                    | Defines the style of the icon.                                         |
-| `color`           | `Color?`              | `Theme.of(context).colorScheme.onSurface` | Color of the icon.                                                     |
-| `tooltip`         | `String?`             | `null`                                    | Tooltip displayed on long press.                                       |
-| `padding`         | `EdgeInsetsGeometry?` | `null`                                    | Padding around the icon.                                               |
-| `size`            | `double?`             | `IconTheme.size ?? 24.0`                  | Size of the icon.                                                      |
-| `duration`        | `Duration`            | `Duration(milliseconds: 750)`             | Duration of the animation.                                             |
-| `reverseDuration` | `Duration`            | `Duration(milliseconds: 750)`             | Duration of the reverse animation.                                     |
-| `curve`           | `Curve`               | `Curves.easeOutBack`                      | Animation curve for the forward animation.                             |
-| `reverseCurve`    | `Curve`               | `Curves.easeOutBack`                      | Animation curve for the reverse animation.                             |
+| Property          | Type                  | Default                           | Description                                                            |
+|-------------------|-----------------------|-----------------------------------|------------------------------------------------------------------------|
+| `value`           | `bool`                | Required                          | Determines whether the toggle is in light (true) or dark (false) mode. |
+| `onChanged`       | `ValueChanged<bool>`  | Required                          | Callback when the toggle is pressed.                                   |
+| `themeIconType`   | `ThemeIconType`       | `ThemeIconType.expand`            | Defines the style of the icon.                                         |
+| `color`           | `Color?`              | `ThemeData.colorScheme.onSurface` | Color of the icon.                                                     |
+| `hoverColor`      | `Color?`              | `ThemeData.hoverColor`            | Hover Color of the toggle.                                             |
+| `highlightColor`  | `Color?`              | `ThemeData.highlightColor`        | Highlight Color of the toggle in pressed down state.                   |
+| `focusColor`      | `Color?`              | `ThemeData.focusColor`            | Focus Color of the toggle when it has input focus.                     |
+| `splashColor`     | `Color?`              | `ThemeData.splashColor`           | Splash Color of the toggle.                                            |
+| `tooltip`         | `String?`             | `null`                            | Tooltip displayed on long press or hover.                              |
+| `padding`         | `EdgeInsetsGeometry?` | `null`                            | Padding around the icon.                                               |
+| `size`            | `double?`             | `IconTheme.size ?? 24.0`          | Size of the icon.                                                      |
+| `duration`        | `Duration`            | `Duration(milliseconds: 500)`     | Duration of the animation.                                             |
+| `reverseDuration` | `Duration`            | `Duration(milliseconds: 500)`     | Duration of the reverse animation.                                     |
+| `curve`           | `Curve`               | `Curves.easeOutBack`              | Animation curve for the forward animation.                             |
+| `reverseCurve`    | `Curve`               | `Curves.easeOutBack`              | Animation curve for the reverse animation.                             |
 
 ---
 
@@ -116,9 +120,9 @@ To use an icon type, pass it to the `themeIconType` property. For example:
 
 ```dart
 LightDarkThemeToggle(
-    themeIconType:ThemeIconType.eclipse,
-    ...
-  )
+  themeIconType:ThemeIconType.eclipse,
+  ...
+)
 ```
 
 ---
@@ -139,9 +143,13 @@ You can adjust the animation by changing:
 You can customize the icon's:
 
 - `size`: Adjust the size of the toggle.
-- `color`: Change the icon's color.
 - `padding`: Add padding around the icon.
 - `tooltip`: Set a tooltip message for accessibility.
+- `color`: Change the icon's color.
+- `hoverColor`: Change the toggle's color in hovering state.
+- `focusColor`: Change the toggle's color when it has the input focus.
+- `highlightColor`: Change the toggle's color in pressed down state.
+- `splashColor`: Change the toggle's splash color.
 
 ---
 
@@ -166,7 +174,7 @@ the [issues page](https://github.com/vchib1/LightDarkThemeToggle/issues).
 
 ## Acknowledgments
 
-This package is inspired by [toggle.dev](https://toggles.dev/) created
+This package is inspired by [toggles.dev](https://toggles.dev/) created
 by [Alfie Jones](https://github.com/AlfieJones).  
 Special thanks for providing inspiration and ideas that helped shape this package.
 
