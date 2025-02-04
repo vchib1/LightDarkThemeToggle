@@ -27,7 +27,7 @@ in your app.
 
 ```yaml
 dependencies:
-  light_dark_theme_toggle: ^1.1.0
+  light_dark_theme_toggle: ^1.1.1
 ```
 
 2. Import the package in your Dart file:

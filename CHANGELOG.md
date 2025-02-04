@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Updated `alignment` to center.
+
 ## 1.1.0
 
 * Added optional `focusColor`, `splashColor`, `highlightColor`, and `hoverColor` for better
