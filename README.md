@@ -27,7 +27,7 @@ in your app.
 
 ```yaml
 dependencies:
-  light_dark_theme_toggle: ^1.1.1
+  light_dark_theme_toggle: ^1.1.2
 ```
 
 2. Import the package in your Dart file:
@@ -45,7 +45,6 @@ Here is an example of how to use the `LightDarkThemeToggle` widget:
 ```dart
 import 'package:flutter/material.dart';
 import 'package:light_dark_theme_toggle/light_dark_theme_toggle.dart';
-import 'model/theme_icon_type.dart';
 
 void main() => runApp(MyApp());
 

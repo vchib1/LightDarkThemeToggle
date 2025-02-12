@@ -35,7 +35,32 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-        body: Center(child: Text('Toggle the toggle!')),
+        body: Center(
+          child: Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            runAlignment: WrapAlignment.center,
+            alignment: WrapAlignment.center,
+            children: [
+              ...ThemeIconType.values.map(
+                (themeIconType) {
+                  return Card(
+                    child: LightDarkThemeToggle(
+                      size: 128.0,
+                      themeIconType: themeIconType,
+                      value: isDarkMode,
+                      onChanged: (value) {
+                        setState(() {
+                          isDarkMode = value;
+                        });
+                      },
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

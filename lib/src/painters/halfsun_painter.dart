@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:light_dark_theme_toggle/src/painters/constants.dart';
 import 'package:light_dark_theme_toggle/src/utils/get_radian.dart';
 
 class HalfSunPainter extends CustomPainter {
@@ -26,9 +27,15 @@ class HalfSunPainter extends CustomPainter {
 
     final rect = Rect.fromCenter(
       center: Offset.zero,
-      width: width * 0.75,
-      height: height * 0.75,
+      width: width * squareSizeFactor,
+      height: height * squareSizeFactor,
     );
+
+    final rRect = RRect.fromRectAndRadius(
+      rect,
+      Radius.circular(width * squareSizeFactor * borderRadiusFactor),
+    );
+
     final paint = Paint()
       ..color = color
       ..isAntiAlias = true
@@ -36,14 +43,14 @@ class HalfSunPainter extends CustomPainter {
 
     final arcRect = Rect.fromCenter(
       center: Offset.zero,
-      width: size.width * 0.65,
-      height: size.height * 0.65,
+      width: size.width * 0.55,
+      height: size.height * 0.55,
     );
 
     //rect 1
     canvas.drawPath(
       Path()
-        ..addRect(rect)
+        ..addRRect(rRect)
         ..addArc(arcRect..shift(Offset.zero), -getRadian(90), getRadian(180))
         ..fillType = PathFillType.evenOdd,
       paint,
@@ -53,7 +60,7 @@ class HalfSunPainter extends CustomPainter {
     // rect 2
     canvas.drawPath(
       Path()
-        ..addRect(rect)
+        ..addRRect(rRect)
         ..addArc(arcRect..shift(Offset.zero), -getRadian(135), getRadian(180))
         ..fillType = PathFillType.evenOdd,
       paint,
