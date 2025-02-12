@@ -22,10 +22,10 @@ class ClassicPainter extends CustomPainter {
     final radius = minDimension * 0.325;
 
     // Ray dimensions
-    final baseStrokeWidth = minDimension * 0.05;
+    final baseStrokeWidth = minDimension * 0.075;
     final rayGap = minDimension * 0.1;
     final rayStartRadius = (radius * .90) + rayGap;
-    final rayLength = minDimension * 0.15;
+    final rayLength = minDimension * 0.1;
 
     final paint = Paint()
       ..color = color
@@ -46,7 +46,7 @@ class ClassicPainter extends CustomPainter {
       canvas.save();
       canvas.translate(center.dx, center.dy);
 
-      final rotationAngle = getRadian(30) * progress;
+      final rotationAngle = (getRadian(45) * progress);
       final scale = lerpDouble(1, 0, progress * .75)!;
 
       canvas.rotate(rotationAngle);

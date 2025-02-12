@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/get_radian.dart';
+import 'constants.dart';
 
 class InnerMoonPainter extends CustomPainter {
   final Animation<double> animation;
@@ -31,19 +32,24 @@ class InnerMoonPainter extends CustomPainter {
 
     final clipCircle = Rect.fromCircle(
       center: Offset.zero,
-      radius: width * .325,
+      radius: width * .30,
     );
 
     final rect = Rect.fromCenter(
       center: Offset.zero,
-      width: width * .75,
-      height: height * .75,
+      width: width * squareSizeFactor,
+      height: height * squareSizeFactor,
+    );
+
+    final rRect = RRect.fromRectAndRadius(
+      rect,
+      Radius.circular((width * squareSizeFactor) * borderRadiusFactor),
     );
 
     // first box
     canvas.drawPath(
       Path()
-        ..addRect(rect)
+        ..addRRect(rRect)
         ..addOval(clipCircle)
         ..fillType = PathFillType.evenOdd,
       paint,
@@ -53,7 +59,7 @@ class InnerMoonPainter extends CustomPainter {
 
     canvas.drawPath(
       Path()
-        ..addRect(rect)
+        ..addRRect(rRect)
         ..addOval(clipCircle)
         ..fillType = PathFillType.evenOdd,
       paint,
@@ -61,10 +67,10 @@ class InnerMoonPainter extends CustomPainter {
 
     canvas.restore();
 
-    final translateX = size.width / 2 + (progress * size.width * .175);
-    final translateY = size.height / 2;
+    final translateX = width / 2 + (progress.clamp(0.0, 1.0) * width * .175);
+    final translateY = height / 2;
 
-    canvas.drawCircle(Offset(translateX, translateY), width * .25, paint);
+    canvas.drawCircle(Offset(translateX, translateY), width * .225, paint);
   }
 
   @override

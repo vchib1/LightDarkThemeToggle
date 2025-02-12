@@ -1,3 +1,9 @@
+## 1.1.2
+
+* Added border radius to `innerMoon` and `halfSun` icon.
+* Some minor change in `classic` icon.
+* Refactored `example/main.dart`.
+
 ## 1.1.1
 
 * Updated `alignment` to center.
